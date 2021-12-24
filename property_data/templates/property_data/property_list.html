@@ -1,0 +1,43 @@
+{% extends "property_data/base.html" %}
+
+{% block content %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Title Property</td>
+            <td>Addreess Property</td>
+            <td>Description</td>
+            <td>Disabled Date Time</td>
+            <td>
+                <a href="{% url 'property_insert' %}" class="btn-outline-success">
+                   <i class="fas fa-plus">Add New</i>
+                </a>
+              
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for item in property_list %}
+        <tr>
+          <td>{{item.title}}</td>
+          <td>{{item.address}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.disableddate}}</td>
+          <td class="row">
+            <a href="{% url 'property_update' item.id %}" class="btn btn-primary px-1 col-sm-4">
+            <i class="bi bi-pencil-square col-sm-4">Edit</i>
+            </a>
+           <form action="{% url 'property_delete' item.id %}" method="post" class="col-sm-1 d-inline" >
+               {% csrf_token %}
+            <button type="submit" class="btn">
+                <i class="btn btn-danger">Delete</i>
+            </button>
+           </form>
+        </td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "property_data/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.title|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.address|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.description|as_crispy_field}}
+            {{form.status|as_crispy_field}}
+            {{form.disableddate|as_crispy_field}}
+        </div>
+       
+    </div>
+    {{form.title|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4">
+           
+        </div>
+        <div class="col-md-8">
+         
+        </div>
+       
+    </div>
+   <div class="row">
+       <div class="col md-8">
+        <button type="submit" class="btn btn-success btn-block btn-lg"><i class="bi bi-clipboard-data">Submit</i></button>
+       </div>
+       <div class="col-md-4">
+           <a href="{% url 'property_list'%}" class="btn-btn-secondary btn-block btn-lg">
+               <i class="fas fa-stream"></i>Back To list
+           </a>
+       </div>
+   </div>
+  
+</form>
+
+{% endblock content %}
